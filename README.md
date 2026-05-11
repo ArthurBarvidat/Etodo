@@ -1,64 +1,64 @@
-# E-Todo — Full Stack Todo Web Application
+# E-Todo — Application de Gestion de Tâches Full Stack
 
-A full stack todo application built with Node.js, MySQL, and React. Users can register, log in, and manage their personal tasks through a REST API secured with JWT authentication.
+Application web de gestion de tâches construite avec Node.js, MySQL et React. Les utilisateurs peuvent s'inscrire, se connecter et gérer leurs tâches personnelles via une API REST sécurisée par JWT.
 
-## What it does
+## Fonctionnalités
 
-- User registration and login with hashed passwords (bcrypt) and JWT tokens
-- Full CRUD on todo items (create, read, update, delete)
-- Protected routes — all task operations require authentication
-- Containerized with Docker for easy deployment
+- Inscription et connexion avec mots de passe hashés (bcrypt) et tokens JWT
+- CRUD complet sur les tâches (créer, lire, modifier, supprimer)
+- Routes protégées — toutes les opérations sur les tâches requièrent une authentification
+- Conteneurisé avec Docker pour un déploiement simplifié
 
-## Project structure
+## Structure du projet
 
 ```
-├── e-todo.sql              # MySQL database schema
-├── docker-compose.yml      # Docker Compose (backend + database + frontend)
+├── e-todo.sql              # Schéma de la base de données MySQL
+├── docker-compose.yml      # Docker Compose (backend + base de données + frontend)
 ├── backend/
 │   ├── Dockerfile
 │   ├── package.json
 │   └── src/
-│       ├── server.js           # Express entry point
-│       ├── config/db.js        # MySQL connection
+│       ├── server.js           # Point d'entrée Express
+│       ├── config/db.js        # Connexion MySQL
 │       ├── middleware/
-│       │   ├── auth.js         # JWT middleware
-│       │   └── notfound.js     # 404 handler
+│       │   ├── auth.js         # Middleware JWT
+│       │   └── notfound.js     # Gestionnaire 404
 │       └── routes/
 │           ├── auth/auth.js    # /register, /login
-│           ├── todos/todos.js  # CRUD todos
-│           └── user/user.js    # User management
-└── frontend/               # React frontend
+│           ├── todos/todos.js  # CRUD tâches
+│           └── user/user.js    # Gestion utilisateurs
+└── frontend/               # Interface React
 ```
 
-## API Routes
+## Routes API
 
-| Method | Route | Auth | Description |
+| Méthode | Route | Auth | Description |
 |---|---|---|---|
-| POST | `/register` | No | Register a new user |
-| POST | `/login` | No | Login and get JWT token |
-| GET | `/user` | Yes | Get current user info |
-| GET | `/user/todos` | Yes | Get current user's todos |
-| GET | `/users/:id` | Yes | Get user by ID or email |
-| PUT | `/users/:id` | Yes | Update user |
-| DELETE | `/users/:id` | Yes | Delete user |
-| GET | `/todos` | Yes | Get all todos |
-| GET | `/todos/:id` | Yes | Get a todo |
-| POST | `/todos` | Yes | Create a todo |
-| PUT | `/todos/:id` | Yes | Update a todo |
-| DELETE | `/todos/:id` | Yes | Delete a todo |
+| POST | `/register` | Non | Créer un compte |
+| POST | `/login` | Non | Connexion et obtention du token JWT |
+| GET | `/user` | Oui | Informations de l'utilisateur connecté |
+| GET | `/user/todos` | Oui | Tâches de l'utilisateur connecté |
+| GET | `/users/:id` | Oui | Récupérer un utilisateur par ID ou email |
+| PUT | `/users/:id` | Oui | Modifier un utilisateur |
+| DELETE | `/users/:id` | Oui | Supprimer un utilisateur |
+| GET | `/todos` | Oui | Toutes les tâches |
+| GET | `/todos/:id` | Oui | Une tâche |
+| POST | `/todos` | Oui | Créer une tâche |
+| PUT | `/todos/:id` | Oui | Modifier une tâche |
+| DELETE | `/todos/:id` | Oui | Supprimer une tâche |
 
-## Run with Docker
+## Lancer avec Docker (recommandé)
 
 ```bash
-cp .env.example .env   # fill in your credentials
+cp .env.example .env   # remplir les identifiants
 docker-compose up
 ```
 
-This starts the database, backend API, and frontend in one command.
+Lance la base de données, l'API backend et le frontend en une seule commande.
 
-## Run manually
+## Lancer manuellement
 
-### Database
+### Base de données
 
 ```bash
 cat e-todo.sql | mysql -u root -p
@@ -80,7 +80,7 @@ npm install
 npm start
 ```
 
-## Environment variables (.env)
+## Variables d'environnement (.env)
 
 ```
 MYSQL_DATABASE=etodo
@@ -91,13 +91,13 @@ PORT=3001
 SECRET=your_jwt_secret
 ```
 
-## Tech stack
+## Stack technique
 
-- **Backend**: Node.js, Express, mysql2, jsonwebtoken, bcryptjs, dotenv
-- **Frontend**: React
-- **Database**: MySQL
-- **Deployment**: Docker, Docker Compose
+- **Backend** : Node.js, Express, mysql2, jsonwebtoken, bcryptjs, dotenv
+- **Frontend** : React
+- **Base de données** : MySQL
+- **Déploiement** : Docker, Docker Compose
 
-## Project context
+## Contexte du projet
 
-Built as part of an Epitech web development project. The goal was to build a complete REST API from scratch with authentication, then connect it to a frontend and containerize the whole stack.
+Réalisé dans le cadre d'un projet web Epitech. L'objectif était de construire une API REST complète avec authentification, de la connecter à un frontend React et de conteneuriser l'ensemble.
